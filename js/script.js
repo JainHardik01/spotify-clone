@@ -41,9 +41,10 @@ async function getSongs(folder) {
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     songUL.innerHTML = ""
     for (const song of songs) {
+        let decodedSongString = decodeURIComponent(song);
         songUL.innerHTML = songUL.innerHTML + `<li> <img class="invert" src="img/music.svg" alt="">
                             <div class="info">
-                                <div> ${song.replaceAll("%20", " ")}</div>
+                                <div> ${decodedSongString.replaceAll("%20", " ")}</div>
                                 <div> Hardik </div>
                             </div>
                             <div class="palynow">
@@ -91,7 +92,7 @@ async function displayAlbum() {
         const e = array[index];
 
 
-        if (e.href.includes("/song") && !e.href.includes(".htaccess")) {
+        if (e.href.includes("/song/") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-2)[0]
 
 
